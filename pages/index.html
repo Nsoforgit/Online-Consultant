@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Appointment System</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <style>
+    /* Base styles */
+
+  body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  width: -webkit-fill-available;
+  
+}
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #6c757d;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+  --border-color: #dee2e6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* Ensure container doesn't add unnecessary width */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+.nav {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.75rem 0;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin-left: 1.5rem;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Forms */
+.auth-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #357abd;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+
+/* Doctor Dashboard Styles */
+.doctor-dashboard {
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.dashboard-title {
+  color: var(--text-color);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+/* .doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+} */
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+.appointments-card,
+.actions-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.appointments-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-scheduled {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.status-confirmed {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--secondary-color);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .appointments-table {
+    min-width: unset;
+  }
+
+  .appointments-table thead {
+    display: none;
+  }
+
+  .appointments-table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+  }
+
+  .appointments-table td {
+    display: flex;
+    padding: 0.75rem 1rem;
+    border: none;
+    align-items: center;
+  }
+
+  .appointments-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    width: 40%;
+    margin-right: 1rem;
+  }
+
+  .actions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Additional responsive adjustments */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .appointments-table {
+    font-size: 0.875rem;
+  }
+
+  .appointments-table th,
+  .appointments-table td {
+    padding: 0.75rem;
+  }
+}
+
+
+/* Doctor Grid */
+
+
+.doctor-card {
+  text-align: center;
+}
+
+.doctor-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1rem;
+}
+
+/* Schedule Inputs */
+.schedule-day {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Utility Classes */
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.text-center { text-align: center; }
+.text-secondary { color: var(--secondary-color); }
+  </style> -->
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container container">
+      <a href="/" class="nav-logo">MedApp</a>
+      <div class="nav-links" id="navLinks">
+        <!-- Dynamically populated based on auth status -->
+      </div>
+    </div>
+  </nav>
+
+  <main id="app" class="container">
+    <!-- Dynamic content will be loaded here -->
+  </main>
+
+  <!-- Templates -->
+  <template id="login-template">
+    <div class="auth-container">
+      <h1 class="auth-title">Login</h1>
+      <form id="loginForm" class="card">
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%">Login</button>
+        <p class="text-center mt-4">
+          Don't have an account? <a href="/register">Register</a>
+        </p>
+      </form>
+    </div>
+  </template>
+
+  <template id="register-template">
+    <div class="auth-container">
+      <h1 class="auth-title">Register</h1>
+      <form id="registerForm" class="card">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone</label>
+          <input type="tel" id="phone" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%">Register</button>
+        <p class="text-center mt-4">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </form>
+    </div>
+  </template>
+
+  <template id="patient-dashboard-template">
+    <div>
+      <h1 class="mb-4">Welcome, <span id="patientName"></span></h1>
+      <div class="dashboard-grid">
+        <div class="card">
+          <h2>Upcoming Appointments</h2>
+          <div id="appointmentsList" class="appointment-list mt-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+        <div class="card">
+          <h2>Quick Actions</h2>
+          <button class="btn btn-primary mt-4" onclick="showBookAppointment()">
+            Book New Appointment
+          </button>
+          <button class="btn btn-secondary mt-2" onclick="showProfile()">
+            Update Profile
+          </button>
+          <button class="btn btn-danger mt-2" onclick="deleteAccount()">
+            Delete Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="admin-dashboard-template">
+    <div>
+      <h1 class="mb-4">Admin Dashboard</h1>
+      <div class="dashboard-grid">
+        <div class="card">
+          <h2>Manage Doctors</h2>
+          <button class="btn btn-primary mt-4" onclick="showAddDoctor()">Add New Doctor</button>
+          <div id="doctorsList" class="mt-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+        <div class="card">
+          <h2>Manage Patients</h2>
+          <div class="search-box mt-4">
+            <input type="text" id="patientSearch" class="form-input" placeholder="Search patients...">
+          </div>
+          <div id="patientsList" class="mt-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+
+  <!-- Add Doctor Template -->
+  <template id="add-doctor-template">
+    <div class="auth-container">
+      <h1 class="auth-title">Add New Doctor</h1>
+      <form id="addDoctorForm" class="card">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="specialization">Specialization</label>
+          <input type="text" id="specialization" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="qualification">Qualification</label>
+          <input type="text" id="qualification" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="experience">Experience (years)</label>
+          <input type="number" id="experience" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fee">Consultation Fee</label>
+          <input type="number" id="fee" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <h3 class="form-section-title">Weekly Schedule</h3>
+          <div id="scheduleInputs">
+            <div class="schedule-day">
+              <label>
+                <input type="checkbox" name="days" value="monday"> Monday
+              </label>
+              <input type="time" name="start_monday" class="form-input">
+              <input type="time" name="end_monday" class="form-input">
+            </div>
+            <div class="schedule-day">
+              <label>
+                <input type="checkbox" name="days" value="tuesday"> Tuesday
+              </label>
+              <input type="time" name="start_tuesday" class="form-input">
+              <input type="time" name="end_tuesday" class="form-input">
+            </div>
+            <div class="schedule-day">
+              <label>
+                <input type="checkbox" name="days" value="wednesday"> Wednesday
+              </label>
+              <input type="time" name="start_wednesday" class="form-input">
+              <input type="time" name="end_wednesday" class="form-input">
+            </div>
+            <div class="schedule-day">
+              <label>
+                <input type="checkbox" name="days" value="thursday"> Thursday
+              </label>
+              <input type="time" name="start_thursday" class="form-input">
+              <input type="time" name="end_thursday" class="form-input">
+            </div>
+            <div class="schedule-day">
+              <label>
+                <input type="checkbox" name="days" value="friday"> Friday
+              </label>
+              <input type="time" name="start_friday" class="form-input">
+              <input type="time" name="end_friday" class="form-input">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%">Add Doctor</button>
+      </form>
+    </div>
+  </template>
+
+
+ <!-- Update the profile template to include doctor-specific fields -->
+<template id="profile-template">
+  <div class="auth-container">
+    <h1 class="auth-title">Update Profile</h1>
+    <form id="profileForm" class="card">
+      <div class="form-group">
+        <label class="form-label" for="firstName">First Name</label>
+        <input type="text" id="firstName" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="lastName">Last Name</label>
+        <input type="text" id="lastName" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone</label>
+        <input type="tel" id="phone" class="form-input" required>
+      </div>
+      
+      <!-- Doctor-specific fields -->
+      <div class="form-group doctor-only" style="display: none;">
+        <label class="form-label" for="specialization">Specialization</label>
+        <input type="text" id="specialization" class="form-input">
+      </div>
+      <div class="form-group doctor-only" style="display: none;">
+        <label class="form-label" for="qualification">Qualification</label>
+        <input type="text" id="qualification" class="form-input">
+      </div>
+      <div class="form-group doctor-only" style="display: none;">
+        <label class="form-label" for="experience">Experience (years)</label>
+        <input type="number" id="experience" class="form-input">
+      </div>
+      
+      <!-- Patient-specific fields -->
+      <div class="form-group patient-only">
+        <label class="form-label" for="dateOfBirth">Date of Birth</label>
+        <input type="date" id="dateOfBirth" class="form-input">
+      </div>
+      <div class="form-group patient-only">
+        <label class="form-label">Gender</label>
+        <div class="form-input" style="display: flex; gap: 1rem; padding: 0.5rem;">
+          <label>
+            <input type="radio" name="gender" value="male"> Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female"> Female
+          </label>
+          <label>
+            <input type="radio" name="gender" value="other"> Other
+          </label>
+        </div>
+      </div>
+      <div class="form-group patient-only">
+        <label class="form-label" for="emergencyContact">Emergency Contact</label>
+        <input type="text" id="emergencyContact" class="form-input" placeholder="Name - Relationship - Phone">
+      </div>
+      <div class="form-group patient-only">
+        <label class="form-label" for="address">Address</label>
+        <textarea id="address" class="form-input" rows="3"></textarea>
+      </div>
+      <div class="form-group patient-only">
+        <label class="form-label" for="medicalHistory">Medical History</label>
+        <textarea id="medicalHistory" class="form-input" rows="3"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width: 100%">Update Profile</button>
+    </form>
+  </div>
+</template>
+
+
+  <template id="book-appointment-template">
+    <div>
+      <h1 class="mb-4">Book Appointment</h1>
+      <div class="doctor-grid">
+        <!-- Dynamically populated with doctor cards -->
+      </div>
+    </div>
+  </template>
+
+  <!-- Add this new template after the book-appointment-template -->
+<template id="doctor-dashboard-template">
+  <div>
+    <h1 class="mb-4">Welcome, Dr. <span id="doctorName"></span></h1>
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2>My Appointments</h2>
+        <div class="mt-4">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border-color);">
+                <th style="padding: 12px; text-align: left;">Patient Name</th>
+                <th style="padding: 12px; text-align: left;">Date</th>
+                <th style="padding: 12px; text-align: left;">Time</th>
+                <th style="padding: 12px; text-align: left;">Status</th>
+                <th style="padding: 12px; text-align: left;">Reason</th>
+                <th style="padding: 12px; text-align: left;">Note from Patient</th>
+              </tr>
+            </thead>
+            <tbody id="doctorAppointmentsList" style="border-top: 1px solid var(--border-color);">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Quick Actions</h2>
+        <button class="btn btn-secondary mt-4" onclick="showProfile()">
+          Update Profile
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+  <template id="doctor-card-template">
+    <div class="card doctor-card">
+      <div class="doctor-avatar">DR</div>
+      <h3 class="text-center"></h3>
+      <p class="text-center text-secondary"></p>
+      <div class="mt-4">
+        <p><strong>Qualification:</strong> <span class="qualification"></span></p>
+        <p><strong>Experience:</strong> <span class="experience"></span> years</p>
+        <p><strong>Fee:</strong> $<span class="fee"></span></p>
+      </div>
+      <button class="btn btn-primary mt-4" style="width: 100%">Book Appointment</button>
+    </div>
+  </template>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
