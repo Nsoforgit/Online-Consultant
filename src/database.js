@@ -3,8 +3,8 @@ const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Nsofor123456.',
-  database: 'aproko_db',
+  password: 'your_password.',
+  database: 'database_name',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
