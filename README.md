@@ -2,36 +2,69 @@
 
 A comprehensive web-based medical appointment management system built with Node.js, Express, and MySQL.
 
-## Features
+## Prerequisites
 
-### For Patients
-- 👤 User registration and authentication
-- 📅 Book appointments with available doctors
-- 📋 View and manage upcoming appointments
-- ⚕️ Access medical history and personal information
-- 🔄 Update profile information
-- ❌ Cancel appointments
+- Node.js (v14 or higher)
+- MySQL (v8.0 or higher)
+- npm (comes with Node.js)
 
-### For Doctors
-- 👨‍⚕️ Manage availability and schedule
-- 📊 View upcoming appointments
-- 🏥 Update professional information
-- 📝 Access patient medical records
+## Setup Instructions
 
-### For Administrators
-- 👥 Manage doctors and patients
-- ➕ Add new doctors to the system
-- 📊 Monitor appointment statistics
-- 🔄 Activate/deactivate doctor accounts
-- 🔍 Search and filter patient records
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd medical-appointment-system
+   ```
 
-## Technical Stack
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-- **Backend**: Node.js with Express
-- **Database**: MySQL
-- **Authentication**: Session-based with bcrypt password hashing
-- **Frontend**: Vanilla JavaScript with HTML templates
-- **Styling**: Custom CSS with responsive design
+3. **Database Setup**
+   - Create a MySQL database:
+     ```sql
+     CREATE DATABASE aproko_db;
+     ```
+   - Update database configuration in `src/database.js` with your credentials:
+     ```javascript
+     {
+       host: 'localhost',
+       user: 'your_username',
+       password: 'your_password',
+       database: 'aproko_db'
+     }
+     ```
+
+4. **Initialize Database**
+   ```bash
+   node src/scripts/seedData.js
+   ```
+   This will create all necessary tables and seed initial data including:
+   - Admin account: admin@example.com / password123
+   - Doctor account: dr.smith@example.com / password123
+   - Patient account: john.doe@example.com / password123
+
+5. **Environment Variables**
+   Create a `.env` file in the root directory:
+   ```
+   PORT=3010
+   SESSION_SECRET=your_session_secret
+   ```
+
+6. **Start the Server**
+   - Development mode:
+     ```bash
+     npm run dev
+     ```
+   - Production mode:
+     ```bash
+     npm start
+     ```
+
+7. **Access the Application**
+   - Open `http://localhost:3010` in your browser
+   - Use the seeded accounts to test different user roles
 
 ## Project Structure
 
@@ -60,34 +93,7 @@ medical-appointment-system/
 └── package.json
 ```
 
-## Setup Instructions
-
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Database Configuration**
-   - Create a MySQL database
-   - Update database credentials in `src/database.js`
-
-3. **Initialize Database**
-   ```bash
-   node src/scripts/seedData.js
-   ```
-
-4. **Start the Server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Access the Application**
-   - Open `http://localhost:3010` in your browser
-   - Default admin credentials:
-     - Email: admin@example.com
-     - Password: password123
-
-## API Endpoints
+## API Documentation
 
 ### Authentication
 - `POST /auth/register` - Register new patient
@@ -123,6 +129,23 @@ medical-appointment-system/
 - CORS protection
 - Input validation and sanitization
 - SQL injection prevention using prepared statements
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Database Connection Error**
+   - Verify MySQL is running
+   - Check database credentials
+   - Ensure database exists
+
+2. **Port Already in Use**
+   - Change PORT in .env file
+   - Kill process using the port
+
+3. **Session Issues**
+   - Clear browser cookies
+   - Verify SESSION_SECRET is set
 
 ## Contributing
 
